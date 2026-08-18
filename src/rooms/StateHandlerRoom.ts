@@ -18,6 +18,10 @@ export class StateHandlerRoom extends Room<State> {
 		this.onMessage('stopTalking', (client, _data) => {
 			this.state.stopTalking(client.sessionId)
 		})
+
+    this.onMessage('setMode', (client, data: { mode: string }) => {
+      this.state.setPlayerMode(client.sessionId, data.mode)
+    })
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any

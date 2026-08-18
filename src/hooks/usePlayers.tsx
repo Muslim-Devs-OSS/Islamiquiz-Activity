@@ -185,3 +185,16 @@ function usePlayersContextSetup() {
 
 	return players
 }
+
+export function useGamePhase() {
+	const { room } = useGameContext()
+	const [phase, setPhase] = useState<'lobby' | 'playing'>('lobby')
+
+	useEffect(() => {
+		if (!room) return
+		setPhase(room.state.phase as 'lobby' | 'playing')
+		room.state.listen('phase', (value: 'lobby' | 'playing') => setPhase(value))
+	}, [room])
+
+	return phase
+}

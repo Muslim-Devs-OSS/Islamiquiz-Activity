@@ -1,7 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap');
+@import '@fontsource/fraunces';
+@import '@fontsource/inter';
+@import '@fontsource/quicksand';
+@import '@fontsource/bricolage-grotesque';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.material-symbols-outlined {
+	font-family: 'Material Symbols Outlined' !important;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+	.bouncy-shadow-primary {
+		box-shadow: 0 8px 0 0 #4d0000;
+	}
+
+	.bouncy-shadow-secondary {
+		box-shadow: 0 8px 0 0 #806600;
+	}
+
+	.bouncy-shadow-surface {
+		box-shadow: 0 6px 0 0 #000000;
+	}
+
+	.active-press:active {
+		transform: translateY(4px);
+		box-shadow: none !important;
+	}
+
+	.hover-lift:hover {
+		transform: translateY(-2px) scale(1.02);
+	}
+}
+
+@keyframes float {
+
+	0%,
+	100% {
+		transform: translateY(0) rotate(0deg);
+	}
+
+	50% {
+		transform: translateY(-10px) rotate(2deg);
+	}
+}
+
+.animate-float {
+	animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delay {
+	animation: float 4s ease-in-out infinite;
+	animation-delay: 1s;
+}
+
+.animate-float-fast {
+	animation: float 3s ease-in-out infinite;
+	animation-delay: 0.5s;
+}
 
 :root {
-	--bg: #12131a;
+	--bg: #0a0a0c;
 	--surface: #1b1e2a;
 	--surface-2: #242838;
 	--accent: #e8b923;
@@ -10,7 +82,7 @@
 	--text-dim: #9aa0b4;
 	--border: rgba(255, 255, 255, 0.08);
 
-	font-family: Inter, system-ui, sans-serif;
+	font-family: 'Quicksand', Inter, system-ui, sans-serif;
 	color: var(--text);
 	background-color: var(--bg);
 }
@@ -54,6 +126,7 @@ button {
 	clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 	position: relative;
 }
+
 .lobby__badge::after {
 	content: '';
 	position: absolute;
@@ -119,9 +192,11 @@ button {
 	font-size: 1rem;
 	transition: transform 120ms;
 }
+
 .lobby__start:hover:not(:disabled) {
 	transform: translateY(-1px);
 }
+
 .lobby__start:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
@@ -159,6 +234,7 @@ button {
 	box-shadow: inset 0 0 0 0 var(--accent-2);
 	transition: box-shadow 150ms;
 }
+
 .player__avatar__talking:before {
 	box-shadow: inset 0 0 0 5px var(--accent-2);
 }
@@ -171,4 +247,9 @@ button {
 	color: var(--text-dim);
 	font-family: Fraunces, serif;
 	font-size: 1.25rem;
+}
+
+@keyframes progress-move {
+	0% { background-position: 40px 0; }
+	100% { background-position: 0 0; }
 }

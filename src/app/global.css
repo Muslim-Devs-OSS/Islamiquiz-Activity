@@ -8,66 +8,68 @@
 @tailwind utilities;
 
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined' !important;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
+	font-family: 'Material Symbols Outlined' !important;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
 }
 
 @layer utilities {
-    .bouncy-shadow-primary {
-        box-shadow: 0 8px 0 0 #4d0000;
-    }
+	.bouncy-shadow-primary {
+		box-shadow: 0 8px 0 0 #4d0000;
+	}
 
-    .bouncy-shadow-secondary {
-        box-shadow: 0 8px 0 0 #806600;
-    }
+	.bouncy-shadow-secondary {
+		box-shadow: 0 8px 0 0 #806600;
+	}
 
-    .bouncy-shadow-surface {
-        box-shadow: 0 6px 0 0 #000000;
-    }
+	.bouncy-shadow-surface {
+		box-shadow: 0 6px 0 0 #000000;
+	}
 
-    .active-press:active {
-        transform: translateY(4px);
-        box-shadow: none !important;
-    }
+	.active-press:active {
+		transform: translateY(4px);
+		box-shadow: none !important;
+	}
 
-    .hover-lift:hover {
-        transform: translateY(-2px) scale(1.02);
-    }
+	.hover-lift:hover {
+		transform: translateY(-2px) scale(1.02);
+	}
 }
 
 @keyframes float {
-    0%,
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-10px) rotate(2deg);
-    }
+
+	0%,
+	100% {
+		transform: translateY(0) rotate(0deg);
+	}
+
+	50% {
+		transform: translateY(-10px) rotate(2deg);
+	}
 }
 
 .animate-float {
-    animation: float 4s ease-in-out infinite;
+	animation: float 4s ease-in-out infinite;
 }
 
 .animate-float-delay {
-    animation: float 4s ease-in-out infinite;
-    animation-delay: 1s;
+	animation: float 4s ease-in-out infinite;
+	animation-delay: 1s;
 }
 
 .animate-float-fast {
-    animation: float 3s ease-in-out infinite;
-    animation-delay: 0.5s;
+	animation: float 3s ease-in-out infinite;
+	animation-delay: 0.5s;
 }
 
 :root {
@@ -124,6 +126,7 @@ button {
 	clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 	position: relative;
 }
+
 .lobby__badge::after {
 	content: '';
 	position: absolute;
@@ -189,9 +192,11 @@ button {
 	font-size: 1rem;
 	transition: transform 120ms;
 }
+
 .lobby__start:hover:not(:disabled) {
 	transform: translateY(-1px);
 }
+
 .lobby__start:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
@@ -229,6 +234,7 @@ button {
 	box-shadow: inset 0 0 0 0 var(--accent-2);
 	transition: box-shadow 150ms;
 }
+
 .player__avatar__talking:before {
 	box-shadow: inset 0 0 0 5px var(--accent-2);
 }
@@ -241,4 +247,9 @@ button {
 	color: var(--text-dim);
 	font-family: Fraunces, serif;
 	font-size: 1.25rem;
+}
+
+@keyframes progress-move {
+	0% { background-position: 40px 0; }
+	100% { background-position: 0 0; }
 }

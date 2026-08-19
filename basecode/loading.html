@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="dark" lang="en" style="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>IslamiQuiz - Loading</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anybody:wght@600;700;800&amp;family=Bricolage+Grotesque:wght@700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "bg-obsidian": "#131313",
+                        "brand-red": "#ff0033",
+                        "brand-orange": "#ff8c00",
+                        "brand-yellow": "#ffd700",
+                        "surface-dark": "#1a1a1a"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Anybody", "sans-serif"],
+                        "body-lg": ["Anybody", "sans-serif"],
+                        "body-md": ["Anybody", "sans-serif"],
+                        "display-lg": ["Bricolage Grotesque"],
+                        "label-bold": ["Anybody", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .geometric-pattern {
+            background-color: #131313;
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px), radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .bounce-animation {
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .progress-bar-stripes {
+            background-image: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.15) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    rgba(255, 255, 255, 0.15) 75%,
+                    transparent 75%,
+                    transparent);
+            background-size: 40px 40px;
+            animation: progress-move 2s linear infinite;
+        }
+
+        @keyframes progress-move {
+            0% {
+                background-position: 40px 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="geometric-pattern min-h-screen text-white flex flex-col font-body-md overflow-hidden relative">
+    <!-- TopAppBar -->
+
+    <!-- Main Content Canvas -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4 py-16 relative z-10">
+        <div class="w-full max-w-lg flex flex-col items-center gap-10">
+            <!-- Central Loading Icon/Logo Area -->
+            <div class="relative flex items-center justify-center bounce-animation mb-8">
+                <div
+                    class="w-48 h-48 bg-gradient-to-tr from-brand-red via-brand-orange to-brand-yellow rounded-[2rem] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-bg-obsidian text-[100px]"
+                        style="font-variation-settings: &quot;FILL&quot; 1;">
+                        mosque
+                    </span>
+                </div>
+                <!-- Sparkles -->
+                <div class="absolute -top-4 -right-4 text-brand-yellow animate-pulse">
+                    <span class="material-symbols-outlined text-4xl"
+                        style="font-variation-settings: &quot;FILL&quot; 1;">auto_awesome</span>
+                </div>
+                <div class="absolute -bottom-2 -left-6 text-brand-orange animate-pulse" style="animation-delay: 0.5s;">
+                    <span class="material-symbols-outlined text-3xl"
+                        style="font-variation-settings: &quot;FILL&quot; 1;">auto_awesome</span>
+                </div>
+            </div>
+            <!-- Loading Text -->
+            <div class="text-center space-y-2">
+                <h1 class="font-headline-md text-3xl font-bold text-brand-yellow">Loading...</h1>
+                <p class="font-body-md text-lg text-brand-orange">Gathering questions from the scrolls</p>
+            </div>
+            <!-- High-Energy Progress Bar -->
+            <div class="w-full bg-surface-dark rounded-full h-8 p-1">
+                <div class="h-full rounded-full bg-gradient-to-r from-brand-red via-brand-orange to-brand-yellow progress-bar-stripes relative overflow-hidden transition-all duration-1000 ease-out w-[65%]"
+                    style="width: 98.4229%;">
+                </div>
+            </div>
+            <!-- 'Did You Know?' Card -->
+            <div class="w-full bg-surface-dark rounded-xl p-6 mt-6 glow-effect transition-transform duration-300">
+                <div class="flex items-start gap-4">
+                    <div
+                        class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-yellow to-brand-orange flex-shrink-0 flex items-center justify-center text-bg-obsidian">
+                        <span class="material-symbols-outlined text-2xl"
+                            style="font-variation-settings: &quot;FILL&quot; 1;">lightbulb</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span
+                            class="font-label-bold text-sm font-bold text-brand-orange tracking-wider uppercase mb-1">Did
+                            You Know?</span>
+                        <p class="font-body-lg text-lg text-white">Omar the developer is a really cool Italian</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Simple script to animate the progress bar slightly to simulate loading
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressBar = document.querySelector('.progress-bar-stripes');
+            let currentWidth = 65;
+
+            setInterval(() => {
+                if (currentWidth < 95) {
+                    currentWidth += Math.random() * 5;
+                    progressBar.style.width = `${currentWidth}%`;
+                }
+            }, 800);
+        });
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="dark" lang="en" style="">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>IslamiQuiz Lobby</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;family=Bricolage+Grotesque:wght@700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#f5f5f5",
+                        "outline-variant": "#4d4d4d",
+                        "primary-fixed": "#ff4d4d",
+                        "primary-container": "#7a0000",
+                        "background": "#0a0a0c",
+                        "on-primary-fixed-variant": "#990000",
+                        "surface-container-highest": "#35353a",
+                        "secondary-container": "#b38f00",
+                        "tertiary-fixed-dim": "#cc3333",
+                        "surface-container-lowest": "#050505",
+                        "on-tertiary-container": "#ffcccc",
+                        "on-tertiary-fixed-variant": "#991f1f",
+                        "surface-dim": "#0a0a0c",
+                        "on-background": "#f5f5f5",
+                        "on-secondary-container": "#ffeebb",
+                        "outline": "#808080",
+                        "primary": "#ff2a2a",
+                        "surface-container-low": "#121214",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#2a2a2e",
+                        "tertiary-container": "#991f1f",
+                        "on-secondary-fixed": "#4d3e00",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#3a3a40",
+                        "surface-variant": "#2a2a2e",
+                        "on-secondary": "#332900",
+                        "on-primary-fixed": "#4d0000",
+                        "secondary-fixed": "#ffdf33",
+                        "on-surface-variant": "#a3a3a3",
+                        "on-tertiary-fixed": "#4d0f0f",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#cca600",
+                        "surface": "#1a1a1c",
+                        "on-surface": "#f5f5f5",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#806600",
+                        "surface-container-high": "#2c2c30",
+                        "surface-container": "#232326",
+                        "on-primary-container": "#ffcccc",
+                        "primary-fixed-dim": "#cc0000",
+                        "secondary": "#ffd700",
+                        "tertiary": "#ff4d4d",
+                        "error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ff8080",
+                        "surface-tint": "#ff2a2a",
+                        "inverse-primary": "#ff8080"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "margin-desktop": "48px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "unit": "8px",
+                        "xl": "64px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "body-lg": ["Quicksand"],
+                        "display-lg-mobile": ["Bricolage Grotesque"],
+                        "display-lg": ["Bricolage Grotesque"],
+                        "headline-sm": ["Bricolage Grotesque"],
+                        "headline-md": ["Bricolage Grotesque"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bouncy-shadow-primary {
+            box-shadow: 0 8px 0 0 #4d0000;
+        }
+
+        .bouncy-shadow-secondary {
+            box-shadow: 0 8px 0 0 #806600;
+        }
+
+        .bouncy-shadow-surface {
+            box-shadow: 0 6px 0 0 #000000;
+        }
+
+        .active-press:active {
+            transform: translateY(4px);
+            box-shadow: none !important;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* Fun floating animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .animate-float-fast {
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen overflow-x-hidden font-body-md">
+    <!-- TopNavBar -->
+    <nav
+        class="bg-background dark:bg-background text-primary dark:text-primary font-headline-sm text-headline-sm w-full py-4 bg-surface-container-low dark:bg-surface-container-low shadow-[0_8px_0_0_rgba(0,0,0,0.3)] dark:shadow-[0_8px_0_0_rgba(0,0,0,0.5)] flex justify-between items-center px-margin-mobile md:px-margin-desktop sticky top-0 z-50">
+        <div
+            class="font-display-lg text-display-lg-mobile md:text-display-lg text-secondary dark:text-secondary-fixed hover:scale-110 transition-transform duration-200 active:translate-y-1 active:shadow-none transition-all cursor-pointer">
+            IslamiQuiz
+        </div>
+        <div class="hidden md:flex gap-md items-center">
+            <button
+                class="text-primary-container font-bold scale-110 hover:scale-110 transition-transform duration-200 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+                Home
+            </button>
+            <button
+                class="text-on-background opacity-80 hover:scale-110 transition-transform duration-200 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined">bolt</span>
+                Daily Challenge
+            </button>
+            <button
+                class="text-on-background opacity-80 hover:scale-110 transition-transform duration-200 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined">auto_stories</span>
+                Learn
+            </button>
+        </div>
+        <div class="flex gap-sm items-center">
+            <button
+                class="w-10 h-10 flex items-center justify-center text-on-background opacity-80 hover:scale-110 transition-transform duration-200 active:translate-y-1 active:shadow-none transition-all rounded-full bg-surface-container-high">
+                <span class="material-symbols-outlined">leaderboard</span>
+            </button>
+            <button
+                class="w-10 h-10 flex items-center justify-center text-on-background opacity-80 hover:scale-110 transition-transform duration-200 active:translate-y-1 active:shadow-none transition-all rounded-full bg-surface-container-high"><span
+                    class="material-symbols-outlined">settings</span></button>
+        </div>
+    </nav>
+    <div class="flex flex-col md:flex-row h-full min-h-[calc(100vh-80px)]">
+        <!-- Main Content Area -->
+        <main class="flex-1 p-margin-mobile md:p-margin-desktop flex flex-col gap-xl">
+            <!-- Hero Section (Bouncy) -->
+            <!-- Game Modes (Scattered Grid) -->
+            <section
+                class="bg-tertiary-container rounded-[3rem] p-lg flex flex-col md:flex-row items-center justify-between gap-lg relative overflow-hidden bouncy-shadow-primary transform animate-float"
+                style="background: linear-gradient(135deg, #FF0000 0%, #FF8C00 100%);">
+                <div
+                    class="absolute top-[-20px] left-[-20px] w-32 h-32 bg-secondary-container rounded-full opacity-50 mix-blend-screen blur-xl">
+                </div>
+                <div
+                    class="absolute bottom-[-40px] right-20 w-48 h-48 bg-primary-container rounded-full opacity-40 mix-blend-screen blur-2xl">
+                </div>
+                <div class="flex-1 z-10 flex flex-col gap-md items-start">
+                    <div
+                        class="inline-block px-4 py-2 bg-secondary-fixed text-on-secondary-fixed font-label-bold text-label-bold rounded-full mb-2 shadow-sm">
+                        ✨ Most Exciting Mode!
+                    </div>
+                    <h1
+                        class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-tertiary-container leading-tight drop-shadow-md">
+                        Play with VC</h1>
+                    <p class="font-body-lg text-body-lg text-tertiary-fixed max-w-md">Team up with friends in a Discord
+                        Voice Channel for high-speed Islamic trivia! Test your collective knowledge and climb the ranks
+                        together.</p>
+                    <button
+                        class="mt-sm bg-secondary-fixed text-on-secondary-fixed font-headline-sm text-headline-sm px-xl py-md rounded-full bouncy-shadow-secondary active-press hover-lift transition-all flex items-center gap-sm group"><span
+                            class="material-symbols-outlined group-hover:rotate-12 transition-transform"
+                            style="font-variation-settings: &quot;FILL&quot; 1;">groups</span>START VC MATCH</button>
+                </div>
+                <div class="flex-1 w-full flex justify-center z-10 relative">
+                    <div
+                        class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-secondary-fixed bg-surface-container overflow-hidden flex items-center justify-center animate-float-delay shadow-[0_0_30px_rgba(255,223,51,0.3)]">
+                        <div
+                            class="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container to-background flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[120px] text-secondary-fixed drop-shadow-lg"
+                                style="font-variation-settings: &quot;FILL&quot; 1;">diversity_3</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                <div
+                    class="bg-surface-container rounded-xl p-md flex flex-col items-center text-center gap-md bouncy-shadow-surface hover-lift transition-all cursor-pointer active-press group">
+                    <div
+                        class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mb-sm group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-4xl text-on-primary-container"
+                            style="font-variation-settings: &quot;FILL&quot; 1;">person</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Solo Campaign</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Journey through history at your own
+                        pace.</p>
+                </div>
+                <div
+                    class="bg-surface-container rounded-xl p-md flex flex-col items-center text-center gap-md bouncy-shadow-surface hover-lift transition-all cursor-pointer active-press group">
+                    <div
+                        class="w-20 h-20 bg-error-container rounded-full flex items-center justify-center mb-sm group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-4xl text-on-error-container"
+                            style="font-variation-settings: &quot;FILL&quot; 1;">local_fire_department</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Endless Survival</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">How long can you last against the
+                        ticking clock?</p>
+                </div>
+            </section>
+        </main>
+        <!-- Right Side Nav / Leaderboard -->
+        <aside
+            class="w-full md:w-80 bg-surface dark:bg-surface text-primary dark:text-primary font-body-lg text-body-lg rounded-l-[2rem] md:rounded-l-[3rem] h-auto md:min-h-screen bg-surface-container dark:bg-surface-container shadow-[-8px_0_0_0_rgba(0,0,0,0.2)] flex flex-col gap-md p-md mt-lg md:mt-0 z-20 pb-xl md:pb-md">
+            <!-- User Profile Header -->
+            <div class="flex items-center gap-sm mb-lg bg-surface-bright p-sm rounded-xl">
+                <div class="relative">
+                    <img class="w-16 h-16 rounded-full border-4 border-tertiary object-cover"
+                        data-alt="A stylized, cartoonish 3D avatar of a playful quiz participant, featuring oversized round features, brightly colored clothing in vivid purple and yellow, set against a solid dark violet background with soft, bouncy studio lighting. The aesthetic is high-energy, friendly, and reminiscent of modern casual multiplayer party games."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjjHu4JTz4t39qlglaN9JW9k7_ZCn6cJp9LiiXCd4qhNT_pNvQG3FgcgnFSGKYOfSjHdKfuKm_o-6tuvxxOAgzohMGryiXeo0eiAs3RGiPr0gmxyXhwd0vdKeNN8pXJGQZb-2FQHY0cgHJWjPc3xA8uxni8lvW7fN3pJbwO7HUrYVdQEexOTKhb2xHr3Z17-6UzwUM5EBZXAB3iuy1D5lHF26iLGVS7Awawch2-qLqhIrZfw7S4E9JQA">
+                    <div
+                        class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container font-label-bold text-[12px] px-2 py-1 rounded-full shadow-sm border-2 border-background">
+                        Lvl 42
+                    </div>
+                </div>
+                <div>
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Salam, Explorer!</h2>
+                    <p class="font-label-bold text-label-bold text-on-surface-variant">Seeker Rank</p>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col gap-sm">
+                <h3 class="font-label-bold text-label-bold text-outline-variant uppercase tracking-widest pl-2">Users
+                </h3>
+                <div
+                    class="flex items-center gap-sm p-sm rounded-lg bg-surface hover:bg-surface-bright transition-colors cursor-pointer group">
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-on-tertiary-container">person</span></div>
+                        <div
+                            class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary-container rounded-full border-2 border-surface flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-[10px] text-on-secondary-container font-bold">mic</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-body-md text-[14px] text-on-surface leading-snug"><span
+                                class="font-bold text-tertiary">Zaid</span></p>
+                        <p class="font-label-bold text-[10px] text-secondary-fixed">In Party</p>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center gap-sm p-sm rounded-lg bg-surface hover:bg-surface-bright transition-colors cursor-pointer group">
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-on-primary-container">person</span></div>
+                        <div
+                            class="absolute -bottom-1 -right-1 w-4 h-4 bg-primary-container rounded-full border-2 border-surface flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-[10px] text-on-primary-container font-bold">play_arrow</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-body-md text-[14px] text-on-surface leading-snug"><span
+                                class="font-bold text-primary">Fatima</span></p>
+                        <p class="font-label-bold text-[10px] text-outline">Playing Solo Campaign</p>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center gap-sm p-sm rounded-lg bg-surface hover:bg-surface-bright transition-colors cursor-pointer group">
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-on-surface-variant">person</span></div>
+                        <div
+                            class="absolute -bottom-1 -right-1 w-4 h-4 bg-outline rounded-full border-2 border-surface flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[10px] text-surface font-bold">mic_off</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-body-md text-[14px] text-on-surface leading-snug"><span
+                                class="font-bold text-on-surface-variant">Omar</span></p>
+                        <p class="font-label-bold text-[10px] text-outline">Idle in VC</p>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center gap-sm p-sm rounded-lg bg-surface hover:bg-surface-bright transition-colors cursor-pointer group">
+                    <div class="relative shrink-0">
+                        <div
+                            class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-on-secondary-container">person</span></div>
+                        <div
+                            class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary-container rounded-full border-2 border-surface">
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-body-md text-[14px] text-on-surface leading-snug"><span
+                                class="font-bold text-secondary">Aisha</span></p>
+                        <p class="font-label-bold text-[10px] text-outline">Online</p>
+                    </div>
+                </div>
+            </div>
+            <!-- CTA -->
+            <button
+                class="mt-auto w-full bg-tertiary text-on-tertiary font-headline-sm text-[20px] py-sm rounded-full bouncy-shadow-secondary active-press hover-lift transition-all border-b-4 border-on-tertiary-fixed flex justify-center items-center gap-2 text-on-secondary-fixed"
+                style="background: linear-gradient(to right, rgb(255, 140, 0), rgb(255, 215, 0)); box-shadow: rgba(255, 140, 0, 0.6) 0px 0px 20px, rgb(128, 102, 0) 0px 8px 0px 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none;">
+                Create Party</button>
+        </aside>
+    </div>
+    <!-- Footer -->
+    <footer
+        class="bg-surface-container-lowest dark:bg-surface-container-lowest text-tertiary dark:text-tertiary font-label-bold text-label-bold w-full mt-xl rounded-t-xl flat no shadows flex flex-col md:flex-row justify-between items-center px-lg py-md gap-md z-10 relative">
+        <div class="font-headline-sm text-headline-sm text-primary">
+            IslamiQuiz
+        </div>
+        <div class="flex gap-md">
+            <a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-70"
+                href="#">Privacy</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-70" href="#">How to
+                Play</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-70"
+                href="#">Contact</a>
+        </div>
+        <div class="text-on-surface-variant opacity-60 text-center md:text-right">
+            © 2024 IslamiQuiz - Fun Learning for Everyone!
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
